@@ -1,0 +1,27 @@
+/*
+A simple styled day counter app for make you remenber of yours YEAR's TODO list.
+You still have time to realize your dreams, so don't waste time.
+*/
+
+
+//set up
+let date = new Date();
+let year = date.getYear();
+const monthDay = (month) => {
+    return new Date(year, month, 0).getDate();
+}
+
+//data
+let lastMonth = date.getMonth() -1;
+let days = monthDay(lastMonth+1);
+let today = date.getDate();
+let totalDays = lastMonth < 0 ? today : 0;
+
+//view
+let view = document.querySelector('#view');
+let left = document.querySelector('#left');
+for(var i=lastMonth; i>=0; i--){
+		totalDays += monthDay(i) + today;
+}
+view.innerHTML = totalDays;
+left.innerHTML = 365 - totalDays;
